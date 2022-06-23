@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "52357319241",
+    "project_id": "minimarketapp-fe780",
+    "storage_bucket": "minimarketapp-fe780.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:52357319241:android:bb810e5894d2be99cbcd98",
+        "android_client_info": {
+          "package_name": "com.example.minimarketapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "52357319241-7tl9rbv75d0dkjsfpn61000f8ea46c5l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCn4HstWBYv6Di3ZMqoWcghkBlkZWgJFJQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "52357319241-7tl9rbv75d0dkjsfpn61000f8ea46c5l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

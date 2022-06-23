@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.minimarketapp.ui.home.HomeFragment"
+        android:label="@string/perfil"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_perfil"
+        android:name="com.example.minimarketapp.ui.perfil.PerfilFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_perfil" />
+
+    <fragment
+        android:id="@+id/nav_categoria"
+        android:name="com.example.minimarketapp.ui.categorias.CategoriaFragment"
+        android:label="@string/categoria"
+        tools:layout="@layout/fragment_categoria" />
+    <fragment
+        android:id="@+id/nav_ofertas"
+        android:name="com.example.minimarketapp.OfertasFragment"
+        android:label="@string/ofertas"
+        tools:layout="@layout/fragment_ofertas" />
+    <fragment
+        android:id="@+id/nav_nuevos_productos"
+        android:name="com.example.minimarketapp.NuevoProductoFragment"
+        android:label="@string/nuevos_productos"
+        tools:layout="@layout/fragment_nuevo_producto" />
+    <fragment
+        android:id="@+id/nav_mis_ordenes"
+        android:name="com.example.minimarketapp.MisOrdenesFragment"
+        android:label="@string/mis_ordenes"
+        tools:layout="@layout/fragment_mis_ordenes" />
+    <fragment
+        android:id="@+id/nav_mi_carrito"
+        android:name="com.example.minimarketapp.MiCarritoFragment"
+        android:label="@string/mi_carrito"
+        tools:layout="@layout/fragment_mi_carrito" />
+</navigation>
