@@ -14,8 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.minimarketapp.R;
+import com.example.minimarketapp.adapters.HomeAdapter;
 import com.example.minimarketapp.adapters.PopularAdapters;
 import com.example.minimarketapp.databinding.FragmentHomeBinding;
+import com.example.minimarketapp.models.HomeCategoria;
 import com.example.minimarketapp.models.PopularModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,13 +30,17 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    RecyclerView popularRec;
+    RecyclerView popularRec, homeCatRec;
     FirebaseFirestore db;
 
     //Insertar popular items
 
     List<PopularModel> popularModelList;
     PopularAdapters popularAdapters;
+
+    //Home Categorias
+    List<HomeCategoria> categoriaList;
+    HomeAdapter homeAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -43,6 +49,7 @@ public class HomeFragment extends Fragment {
         db = FirebaseFirestore.getInstance();
 
         popularRec = root.findViewById(R.id.pop_rec);
+        homeCatRec = root.findViewById(R.id.explore_rec);
 
         //Popular items
         popularRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
@@ -70,6 +77,35 @@ public class HomeFragment extends Fragment {
                             Toast.makeText(getActivity(), "Error"+task.getException(), Toast.LENGTH_SHORT).show();
                         }
                         }
+
+                });
+
+        //Home Categoria
+        homeCatRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
+        categoriaList = new ArrayList<>();
+        homeAdapter = new HomeAdapter(getActivity(),categoriaList);
+        homeCatRec.setAdapter(homeAdapter);
+
+
+        //Trae coleccion de Cloud Firestore
+        db.collection("HomeCategorias")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                HomeCategoria homeCategoria = document.toObject(HomeCategoria.class);
+                                categoriaList.add(homeCategoria);
+                                homeAdapter.notifyDataSetChanged();
+                            }
+
+                        }else
+                        {
+                            Toast.makeText(getActivity(), "Error"+task.getException(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
 
                 });
 

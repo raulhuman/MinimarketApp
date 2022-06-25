@@ -2,13 +2,18 @@ package com.example.minimarketapp.adapters;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.minimarketapp.R;
 import com.example.minimarketapp.models.HomeCategoria;
 
 import java.util.List;
@@ -26,22 +31,32 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        //Coloca el cardview
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.home_cat_items,parent,false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        //Carga imagen y nombre en el cardview
+        Glide.with(context).load(categoriaList.get(position).getImg_url()).into(holder.catImg);
+        holder.nombre.setText(categoriaList.get(position).getNombre());
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return categoriaList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+
+        ImageView catImg;
+        TextView nombre;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            catImg = itemView.findViewById(R.id.home_cat_img);
+            nombre = itemView.findViewById(R.id.cat_home_name);
         }
     }
 }
