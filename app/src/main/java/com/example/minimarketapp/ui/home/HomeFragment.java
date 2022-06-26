@@ -16,9 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.minimarketapp.R;
 import com.example.minimarketapp.adapters.HomeAdapter;
 import com.example.minimarketapp.adapters.PopularAdapters;
+import com.example.minimarketapp.adapters.RecomendadoAdapter;
 import com.example.minimarketapp.databinding.FragmentHomeBinding;
 import com.example.minimarketapp.models.HomeCategoria;
 import com.example.minimarketapp.models.PopularModel;
+import com.example.minimarketapp.models.RecomendadoModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -30,7 +32,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    RecyclerView popularRec, homeCatRec;
+    RecyclerView popularRec, homeCatRec, recomendadoRec;
     FirebaseFirestore db;
 
     //Insertar popular items
@@ -42,6 +44,10 @@ public class HomeFragment extends Fragment {
     List<HomeCategoria> categoriaList;
     HomeAdapter homeAdapter;
 
+    //Recomendados
+    List<RecomendadoModel> recomendadoModelList;
+    RecomendadoAdapter recomendadoAdapter;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -50,6 +56,7 @@ public class HomeFragment extends Fragment {
 
         popularRec = root.findViewById(R.id.pop_rec);
         homeCatRec = root.findViewById(R.id.explore_rec);
+        recomendadoRec = root.findViewById(R.id.recommended_rec);
 
         //Popular items
         popularRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
@@ -99,6 +106,35 @@ public class HomeFragment extends Fragment {
                                 HomeCategoria homeCategoria = document.toObject(HomeCategoria.class);
                                 categoriaList.add(homeCategoria);
                                 homeAdapter.notifyDataSetChanged();
+                            }
+
+                        }else
+                        {
+                            Toast.makeText(getActivity(), "Error"+task.getException(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                });
+
+        //Recomendados Categoria
+        recomendadoRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
+        recomendadoModelList = new ArrayList<>();
+        recomendadoAdapter = new RecomendadoAdapter(getActivity(),recomendadoModelList);
+        recomendadoRec.setAdapter(recomendadoAdapter);
+
+
+        //Trae coleccion de Cloud Firestore
+        db.collection("Recomendado")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                RecomendadoModel recomendadoModel = document.toObject(RecomendadoModel.class);
+                                recomendadoModelList.add(recomendadoModel);
+                                recomendadoAdapter.notifyDataSetChanged();
                             }
 
                         }else
