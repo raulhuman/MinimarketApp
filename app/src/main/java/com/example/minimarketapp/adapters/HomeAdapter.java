@@ -1,6 +1,8 @@
 package com.example.minimarketapp.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.minimarketapp.R;
+import com.example.minimarketapp.activities.VerTodoActivity;
 import com.example.minimarketapp.models.HomeCategoria;
 
 import java.util.List;
@@ -36,10 +39,21 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         //Carga imagen y nombre en el cardview
         Glide.with(context).load(categoriaList.get(position).getImg_url()).into(holder.catImg);
         holder.nombre.setText(categoriaList.get(position).getNombre());
+
+        //Dar clic a cualquier item, pasar datos
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, VerTodoActivity.class);
+                intent.putExtra("tipo", categoriaList.get(position).getTipo());
+                context.startActivity(intent);
+            }
+        });
+
 
     }
 

@@ -40,6 +40,13 @@ public class VerTodoAdapter extends RecyclerView.Adapter<VerTodoAdapter.ViewHold
         holder.rating.setText(list.get(position).getRating());
         holder.precio.setText(list.get(position).getPrecio()+"/kg");
 
+        if(list.get(position).getTipo().equals("huevo")){
+            holder.precio.setText(list.get(position).getPrecio()+"/docena");
+        }
+        if(list.get(position).getTipo().equals("lacteo")){
+            holder.precio.setText(list.get(position).getPrecio()+"/unidad");
+        }
+
     }
 
     @Override

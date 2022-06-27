@@ -78,5 +78,50 @@ public class VerTodoActivity extends AppCompatActivity {
                 }
             });
         }
+
+        //Marino
+        if(tipo != null && tipo.equalsIgnoreCase("marino")){
+            firestore.collection("TodoProductos").whereEqualTo("tipo", "marino").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    for (DocumentSnapshot documentSnapshot:task.getResult().getDocuments()){
+                        VerTodoModel verTodoModel = documentSnapshot.toObject(VerTodoModel.class);
+                        verTodoModelList.add(verTodoModel);
+                        verTodoAdapter.notifyDataSetChanged();
+                    }
+
+                }
+            });
+        }
+
+        //Huevo
+        if(tipo != null && tipo.equalsIgnoreCase("huevo")){
+            firestore.collection("TodoProductos").whereEqualTo("tipo", "huevo").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    for (DocumentSnapshot documentSnapshot:task.getResult().getDocuments()){
+                        VerTodoModel verTodoModel = documentSnapshot.toObject(VerTodoModel.class);
+                        verTodoModelList.add(verTodoModel);
+                        verTodoAdapter.notifyDataSetChanged();
+                    }
+
+                }
+            });
+        }
+
+        //Lacteo
+        if(tipo != null && tipo.equalsIgnoreCase("lacteo")){
+            firestore.collection("TodoProductos").whereEqualTo("tipo", "lacteo").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    for (DocumentSnapshot documentSnapshot:task.getResult().getDocuments()){
+                        VerTodoModel verTodoModel = documentSnapshot.toObject(VerTodoModel.class);
+                        verTodoModelList.add(verTodoModel);
+                        verTodoAdapter.notifyDataSetChanged();
+                    }
+
+                }
+            });
+        }
     }
 }
