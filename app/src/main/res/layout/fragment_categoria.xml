@@ -6,10 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.categorias.CategoriaFragment">
 
-    <TextView
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cat_rec"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Categoria"/>
+        android:layout_height="wrap_content"
+        android:layout_marginRight="6dp"
+        android:layout_marginLeft="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
