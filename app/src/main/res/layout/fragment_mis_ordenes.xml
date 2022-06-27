@@ -3,12 +3,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MisOrdenesFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/mis_ordenes" />
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/new_products_img"
+            android:layout_width="400dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/myorder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.34"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            app:layout_constraintVertical_bias="0"
+            android:textColor="@color/purple_700"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:fontFamily="@font/aclonica"
+            android:text="No tienes pedidos ahora."
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/new_products_img" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
