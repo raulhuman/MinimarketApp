@@ -1,6 +1,7 @@
 package com.example.minimarketapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.minimarketapp.R;
+import com.example.minimarketapp.activities.VerTodoActivity;
 import com.example.minimarketapp.models.PopularModel;
 
 import java.util.List;
@@ -40,6 +42,16 @@ public class PopularAdapters extends RecyclerView.Adapter<PopularAdapters.ViewHo
         holder.rating.setText(popularModelList.get(position).getRating());
         holder.descripcion.setText(popularModelList.get(position).getDescripcion());
         holder.descuento.setText(popularModelList.get(position).getDescuento());
+
+        //Dar clic a cualquier item, pasar datos
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, VerTodoActivity.class);
+                intent.putExtra("tipo", popularModelList.get(position).getTipo());
+                context.startActivity(intent);
+            }
+        });
 
     }
 

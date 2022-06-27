@@ -10,6 +10,7 @@
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/layout/activity_registro.xml" value="0.25" />
+        <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/layout/activity_ver_todo.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/layout/app_bar_main.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/layout/border.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/layout/content_main.xml" value="0.20416666666666666" />
@@ -26,6 +27,7 @@
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/layout/nav_cat_item.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/layout/popular_item.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/layout/recomendado_item.xml" value="0.203125" />
+        <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/layout/ver_todo_item.xml" value="0.25" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/menu/activity_main_drawer.xml" value="0.5" />
       </map>
     </option>
