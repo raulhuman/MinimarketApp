@@ -1,6 +1,7 @@
 package com.example.minimarketapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.minimarketapp.R;
+import com.example.minimarketapp.activities.DetalleActivity;
 import com.example.minimarketapp.models.VerTodoModel;
 
 import java.util.List;
@@ -46,6 +48,16 @@ public class VerTodoAdapter extends RecyclerView.Adapter<VerTodoAdapter.ViewHold
         if(list.get(position).getTipo().equals("lacteo")){
             holder.precio.setText(list.get(position).getPrecio()+"/unidad");
         }
+
+        //Enviar datos de la lista
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetalleActivity.class);
+                intent.putExtra("detalle", list.get(position));
+                context.startActivity(intent);
+            }
+        });
 
     }
 
