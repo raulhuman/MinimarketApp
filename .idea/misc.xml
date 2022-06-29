@@ -9,7 +9,7 @@
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/drawable/edittext_background.xml" value="0.139" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/drawable/edittext_bg.xml" value="0.139" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/drawable/remove_circle.xml" value="0.139" />
-        <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/layout/activity_detalle.xml" value="0.25" />
+        <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/layout/activity_detalle.xml" value="0.22" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/layout/activity_home.xml" value="0.22" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
@@ -28,6 +28,7 @@
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/layout/fragment_perfil.xml" value="0.25" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/layout/fragment_slideshow.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/layout/home_cat_items.xml" value="0.203125" />
+        <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/layout/mi_carrito_item.xml" value="0.203125" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/layout/nav_cat_item.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/layout/popular_item.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/MinimarketApp/app/src/main/res/layout/recomendado_item.xml" value="0.203125" />
