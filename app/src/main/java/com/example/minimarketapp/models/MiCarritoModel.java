@@ -1,6 +1,8 @@
 package com.example.minimarketapp.models;
 
-public class MiCarritoModel {
+import java.io.Serializable;
+
+public class MiCarritoModel implements Serializable {
 
     String productoNombre;
     String productoPrecio;

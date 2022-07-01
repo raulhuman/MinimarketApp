@@ -151,8 +151,8 @@ public class DetalleActivity extends AppCompatActivity {
 
         //Crear la Coleccion "AgregarCarrito", dentro de ella la coleccion "UsuarioActual" y ahi almacena
         //los datos del Map
-        firestore.collection("AgregarCarrito").document(auth.getCurrentUser().getUid())
-                .collection("UsuarioActual").add(carritoMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+        firestore.collection("UsuarioActual").document(auth.getCurrentUser().getUid())
+                .collection("AgregarCarrito").add(carritoMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
                         Toast.makeText(DetalleActivity.this, "Agregado al Carrito", Toast.LENGTH_SHORT).show();

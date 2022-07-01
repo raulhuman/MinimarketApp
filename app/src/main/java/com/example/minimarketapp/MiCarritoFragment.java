@@ -15,11 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.minimarketapp.activities.DetalleActivity;
+import com.example.minimarketapp.activities.PedidoRealizadoActivity;
 import com.example.minimarketapp.adapters.MiCarritoAdapter;
 import com.example.minimarketapp.models.MiCarritoModel;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,6 +32,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +43,7 @@ public class MiCarritoFragment extends Fragment {
     FirebaseAuth auth;
     TextView ovetTotalAcumulado;
     ProgressBar progressBar;
+    Button buyNow;
 
     RecyclerView recyclerView;
     MiCarritoAdapter carritoAdapter;
@@ -59,6 +63,7 @@ public class MiCarritoFragment extends Fragment {
 
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
+        buyNow = root.findViewById(R.id.buy_now);
 
         progressBar = root.findViewById(R.id.progressbar);
         progressBar.setVisibility(View.VISIBLE);
@@ -79,8 +84,8 @@ public class MiCarritoFragment extends Fragment {
         carritoAdapter = new MiCarritoAdapter(getActivity(), carritoModelList);
         recyclerView.setAdapter(carritoAdapter);
 
-        db.collection("AgregarCarrito").document(auth.getCurrentUser().getUid())
-                .collection("UsuarioActual").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection("UsuarioActual").document(auth.getCurrentUser().getUid())
+                .collection("AgregarCarrito").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()){
@@ -94,6 +99,16 @@ public class MiCarritoFragment extends Fragment {
                         }
                     }
                 });
+
+        //Enviar datos del carrito al hacer clic a otro activity
+        buyNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), PedidoRealizadoActivity.class);
+                intent.putExtra("itemLista", (Serializable) carritoModelList);
+                startActivity(intent);
+            }
+        });
 
         return root;
     }
