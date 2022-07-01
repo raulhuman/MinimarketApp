@@ -1,5 +1,6 @@
 package com.example.minimarketapp.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -35,7 +36,7 @@ public class PopularAdapters extends RecyclerView.Adapter<PopularAdapters.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PopularAdapters.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PopularAdapters.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         Glide.with(context).load(popularModelList.get(position).getImg_url()).into(holder.popImg);
         holder.nombre.setText(popularModelList.get(position).getNombre());

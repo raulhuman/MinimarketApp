@@ -12,16 +12,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.minimarketapp.R;
-import com.example.minimarketapp.models.RecomendadoModel;
+import com.example.minimarketapp.models.NavCategoriaDetalleModel;
 
 import java.util.List;
 
-public class RecomendadoAdapter extends RecyclerView.Adapter<RecomendadoAdapter.ViewHolder> {
+public class NavCategoriaDetalleAdapter extends RecyclerView.Adapter<NavCategoriaDetalleAdapter.ViewHolder> {
 
     Context context;
-    List<RecomendadoModel> list;
+    List<NavCategoriaDetalleModel> list;
 
-    public RecomendadoAdapter(Context context, List<RecomendadoModel> list) {
+    public NavCategoriaDetalleAdapter(Context context, List<NavCategoriaDetalleModel> list) {
         this.context = context;
         this.list = list;
     }
@@ -29,18 +29,15 @@ public class RecomendadoAdapter extends RecyclerView.Adapter<RecomendadoAdapter.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        //reemplaza vista por el cardview
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recomendado_item,parent,false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.nav_categoria_detalle_item, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         Glide.with(context).load(list.get(position).getImg_url()).into(holder.imageView);
         holder.nombre.setText(list.get(position).getNombre());
-        holder.descripcion.setText(list.get(position).getDescripcion());
-        holder.rating.setText(list.get(position).getRating());
-
-
+        holder.precio.setText(list.get(position).getPrecio()+"/docena");
 
     }
 
@@ -52,15 +49,14 @@ public class RecomendadoAdapter extends RecyclerView.Adapter<RecomendadoAdapter.
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         ImageView imageView;
-        TextView nombre, descripcion, rating;
+        TextView nombre, precio;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imageView = itemView.findViewById(R.id.rec_img);
-            nombre = itemView.findViewById(R.id.rec_name);
-            descripcion = itemView.findViewById(R.id.rec_des);
-            rating = itemView.findViewById(R.id.rec_rating);
+            imageView = itemView.findViewById(R.id.cat_nav_img);
+            nombre = itemView.findViewById(R.id.nav_cat_name);
+            precio = itemView.findViewById(R.id.price);
         }
     }
 }

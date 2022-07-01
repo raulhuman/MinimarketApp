@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.example.minimarketapp.R;
 import com.example.minimarketapp.adapters.VerTodoAdapter;
@@ -27,6 +29,7 @@ public class VerTodoActivity extends AppCompatActivity {
     VerTodoAdapter verTodoAdapter;
     List<VerTodoModel> verTodoModelList;
     Toolbar toolbar;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +40,15 @@ public class VerTodoActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        progressBar = findViewById(R.id.progressbar);
+        progressBar.setVisibility(View.VISIBLE);
+
         firestore = FirebaseFirestore.getInstance();
 
         //Traer datos y rellenarlos en el recycleView
         String tipo = getIntent().getStringExtra("tipo");
         recyclerView = findViewById(R.id.view_all_rec);
+        recyclerView.setVisibility(View.GONE);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         verTodoModelList = new ArrayList<>();
@@ -58,6 +65,8 @@ public class VerTodoActivity extends AppCompatActivity {
                         VerTodoModel verTodoModel = documentSnapshot.toObject(VerTodoModel.class);
                         verTodoModelList.add(verTodoModel);
                         verTodoAdapter.notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
                     }
 
                 }
@@ -73,6 +82,8 @@ public class VerTodoActivity extends AppCompatActivity {
                         VerTodoModel verTodoModel = documentSnapshot.toObject(VerTodoModel.class);
                         verTodoModelList.add(verTodoModel);
                         verTodoAdapter.notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
                     }
 
                 }
@@ -88,6 +99,8 @@ public class VerTodoActivity extends AppCompatActivity {
                         VerTodoModel verTodoModel = documentSnapshot.toObject(VerTodoModel.class);
                         verTodoModelList.add(verTodoModel);
                         verTodoAdapter.notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
                     }
 
                 }
@@ -103,6 +116,8 @@ public class VerTodoActivity extends AppCompatActivity {
                         VerTodoModel verTodoModel = documentSnapshot.toObject(VerTodoModel.class);
                         verTodoModelList.add(verTodoModel);
                         verTodoAdapter.notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
                     }
 
                 }
@@ -118,6 +133,8 @@ public class VerTodoActivity extends AppCompatActivity {
                         VerTodoModel verTodoModel = documentSnapshot.toObject(VerTodoModel.class);
                         verTodoModelList.add(verTodoModel);
                         verTodoAdapter.notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
                     }
 
                 }

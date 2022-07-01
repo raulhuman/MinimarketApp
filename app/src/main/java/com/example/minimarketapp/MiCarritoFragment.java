@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class MiCarritoFragment extends Fragment {
     FirebaseFirestore db;
     FirebaseAuth auth;
     TextView ovetTotalAcumulado;
+    ProgressBar progressBar;
 
     RecyclerView recyclerView;
     MiCarritoAdapter carritoAdapter;
@@ -57,8 +59,14 @@ public class MiCarritoFragment extends Fragment {
 
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
+
+        progressBar = root.findViewById(R.id.progressbar);
+        progressBar.setVisibility(View.VISIBLE);
+
+
         recyclerView = root.findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setVisibility(View.GONE);
 
         ovetTotalAcumulado = root.findViewById(R.id.textView7);
 
@@ -80,6 +88,8 @@ public class MiCarritoFragment extends Fragment {
                                 MiCarritoModel carritoModel = documentSnapshot.toObject(MiCarritoModel.class);
                                 carritoModelList.add(carritoModel);
                                 carritoAdapter.notifyDataSetChanged();
+                                progressBar.setVisibility(View.GONE);
+                                recyclerView.setVisibility(View.VISIBLE);
                             }
                         }
                     }
