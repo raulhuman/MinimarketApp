@@ -10,18 +10,20 @@ public class MiCarritoModel implements Serializable {
     String hora;
     String totalCantidad;
     int totalPrecio;
+    String documentId;
 
 
     public MiCarritoModel() {
     }
 
-    public MiCarritoModel(String productoNombre, String productoPrecio, String fecha, String hora, String totalCantidad, int totalPrecio) {
+    public MiCarritoModel(String productoNombre, String productoPrecio, String fecha, String hora, String totalCantidad, int totalPrecio, String documentId) {
         this.productoNombre = productoNombre;
         this.productoPrecio = productoPrecio;
         this.fecha = fecha;
         this.hora = hora;
         this.totalCantidad = totalCantidad;
         this.totalPrecio = totalPrecio;
+        this.documentId = documentId;
     }
 
     public String getProductoNombre() {
@@ -70,5 +72,13 @@ public class MiCarritoModel implements Serializable {
 
     public void setTotalPrecio(int totalPrecio) {
         this.totalPrecio = totalPrecio;
+    }
+
+    public String getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
     }
 }

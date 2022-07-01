@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -13,6 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.minimarketapp.R;
 import com.example.minimarketapp.models.MiCarritoModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
@@ -22,9 +28,14 @@ public class MiCarritoAdapter extends RecyclerView.Adapter<MiCarritoAdapter.View
     List<MiCarritoModel> carritoModelList;
     int totalPrecio = 0;
 
+    FirebaseFirestore firestore;
+    FirebaseAuth auth;
+
     public MiCarritoAdapter(Context context, List<MiCarritoModel> carritoModelList) {
         this.context = context;
         this.carritoModelList = carritoModelList;
+        firestore = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
     }
 
     @NonNull
@@ -43,6 +54,29 @@ public class MiCarritoAdapter extends RecyclerView.Adapter<MiCarritoAdapter.View
         holder.cantidad.setText(carritoModelList.get(position).getTotalCantidad());
         holder.totalPrecio.setText(String.valueOf(carritoModelList.get(position).getTotalPrecio()));
 
+        //Eliminar
+        holder.deleteItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firestore.collection("UsuarioActual").document(auth.getCurrentUser().getUid())
+                        .collection("AgregarCarrito")
+                        .document(carritoModelList.get(position).getDocumentId())
+                        .delete()
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    carritoModelList.remove(carritoModelList.get(position));
+                                    notifyDataSetChanged();
+                                    Toast.makeText(context, "Producto Eliminado", Toast.LENGTH_SHORT).show();
+                                }else {
+                                    Toast.makeText(context, "Error"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+            }
+        });
+
         //Pasar el total acumulado a CarritoFragment
         totalPrecio = totalPrecio + carritoModelList.get(position).getTotalPrecio();
         Intent intent = new Intent("MiTotalAcumulado");
@@ -59,6 +93,7 @@ public class MiCarritoAdapter extends RecyclerView.Adapter<MiCarritoAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView nombre, precio, fecha, hora, cantidad, totalPrecio;
+        ImageView deleteItem;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -69,6 +104,7 @@ public class MiCarritoAdapter extends RecyclerView.Adapter<MiCarritoAdapter.View
             hora = itemView.findViewById(R.id.current_time);
             cantidad = itemView.findViewById(R.id.total_quantity);
             totalPrecio = itemView.findViewById(R.id.total_price);
+            deleteItem = itemView.findViewById(R.id.delete);
         }
     }
 }

@@ -90,7 +90,13 @@ public class MiCarritoFragment extends Fragment {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()){
                             for(DocumentSnapshot documentSnapshot : task.getResult().getDocuments()){
+
+                                //Obtener el id del producto
+                                String documentoId = documentSnapshot.getId();
+                                //Trae el objeto
                                 MiCarritoModel carritoModel = documentSnapshot.toObject(MiCarritoModel.class);
+
+                                carritoModel.setDocumentId(documentoId);
                                 carritoModelList.add(carritoModel);
                                 carritoAdapter.notifyDataSetChanged();
                                 progressBar.setVisibility(View.GONE);
