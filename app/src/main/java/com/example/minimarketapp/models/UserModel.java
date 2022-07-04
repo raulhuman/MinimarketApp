@@ -5,6 +5,7 @@ public class UserModel {
     String nombre;
     String email;
     String password;
+    String perfilImg;
 
     public UserModel() {
     }
@@ -13,6 +14,14 @@ public class UserModel {
         this.nombre = nombre;
         this.email = email;
         this.password = password;
+    }
+
+    public String getPerfilImg() {
+        return perfilImg;
+    }
+
+    public void setPerfilImg(String perfilImg) {
+        this.perfilImg = perfilImg;
     }
 
     public String getNombre() {

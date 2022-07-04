@@ -96,7 +96,7 @@ public class RegistroActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     UserModel userModel = new UserModel(usernName, userEmail,userPassword);
                     String id = task.getResult().getUser().getUid();
-                    database.getReference().child("Users").setValue(userModel);
+                    database.getReference().child("Users").child(id).setValue(userModel);
                     progressBar.setVisibility(View.GONE);
 
                     Toast.makeText(RegistroActivity.this, "Registro Exitoso", Toast.LENGTH_SHORT).show();
